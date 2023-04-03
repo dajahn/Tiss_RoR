@@ -13,4 +13,5 @@
 ## Märzinger Manuel
 | Time spent  | Description |
 | ----------- | ----------- |
-| xx:xx h     | template    |
+| 00:30 h     | Setup development environment and repository    |
+| 04:00 h     | implementation of register and login    |
