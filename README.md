@@ -1,24 +1,16 @@
 # README
+* Ruby Version: 3.1.2
+* Rails Version: 7.0.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Timetable
 
-Things you may want to cover:
+## Jahn David
+| Time spent  | Description |
+| ----------- | ----------- |
+| xx:xx h     | template    |
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Märzinger Manuel
+| Time spent  | Description |
+| ----------- | ----------- |
+| xx:xx h     | template    |
