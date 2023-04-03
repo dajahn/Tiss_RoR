@@ -13,7 +13,7 @@
 
 ## Märzinger Manuel
 
-| Date       | Description |
-| ---------- | ----------- | -------------------------------------------- |
-| 03.04.2022 | 00:30 h     | Setup development environment and repository |
-| 03.04.2022 | 04:00 h     | implementation of register and login         |
+| Date       | Time spent | Description                                  |
+| ---------- | ---------- | -------------------------------------------- |
+| 03.04.2022 | 00:30 h    | Setup development environment and repository |
+| 03.04.2022 | 04:00 h    | implementation of register and login         |
