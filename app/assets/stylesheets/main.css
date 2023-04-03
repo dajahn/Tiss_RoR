@@ -1,0 +1,26 @@
+.control-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+  flex: 1;
+}
+
+.logout-div {
+  margin-left: auto;
+}
+
+.logout {
+  font-size: 1em;
+}
+
+.logout-container {
+  display: flex;
+  align-items: center;
+  background-color: #12192c;
+  color: white;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 16px;
+}

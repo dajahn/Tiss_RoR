@@ -1,0 +1,18 @@
+.flash-card {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  padding: 10px;
+  opacity: 80%;
+  border-radius: 16px;
+  margin: 16px;
+  color: black;
+}
+
+.alert {
+  background-color: red;
+}
+
+.notice {
+    background-color: greenyellow;
+}

@@ -13,3 +13,54 @@
  *= require_tree .
  *= require_self
  */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #00c9a7;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 8px;
+}
+
+.button-primary,
+.button-secondary {
+  padding: 1em;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 2em;
+  padding: 10px;
+  border: none;
+  background-color: #12192c;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #00c9a7;
+}
+
+a.button-primary {
+  width: 80%;
+  color: white;
+  text-decoration: none;
+}
+
+a:visited.button-primary {
+  color: white;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
