@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "list", media: "all" %>
+<%if !Current.user%>
+  <div class="list-container">
+    <% @result.each do |person|%>
+      <div class="list-item">
+        <% if person["adressbuch_benutzerbild"]%>
+          <div class="img-container">
+            <img class="person-img" src="<%= "https://tiss.tuwien.ac.at/" + person["adressbuch_benutzerbild"]%>">
+          </div>
+        <%end%>
+        <div class="text-info-box">
+          <span class="name"><%= person["firstname"]%></span>
+          <span class="name"><%= person["lastname"]%></span>
+          <span><%= person["prefixTitle"]%></span>
+          <div class="controls">
+            <a class="button-secondary">Details</a>
+            <a class="button-secondary">Add Favorites</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else%>
+  <div>
+    <span>You have to be logged in to perform this action.</span>
+  </div>
+<% end%>

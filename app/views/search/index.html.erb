@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag "user-forms", media: "all" %>
+<% if Current.user %>
+  <div class="main-container">
+    <div class="form">
+      <h1><%= @search_type["model"]%> Search</h1>
+      <%= form_with url: { action: :search }, data: {turbo:false} do |form|%>
+        <div class="form-group">
+          <%= form.label "Enter #{@search_type["search_term"]}:" %>
+          <%= form.text_field :query, class: "input-field"%>
+        </div>
+        <div class="controls">
+          <%= form.submit "Search", class: "button-secondary submit-button" %>
+        </div>
+      <% end%>
+    </div>
+  </div>
+<% else%>
+  <div>
+    <span>You have to be logged in to perform this action.</span>
+  </div>
+<%end%>

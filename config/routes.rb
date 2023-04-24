@@ -11,5 +11,14 @@ Rails.application.routes.draw do
   get "person_search", to: "person#index"
   post "person_search", to: "person#search"
 
+  get "course_search", to: "course#index"
+  post "course_search", to: "course#search"
+
+  get "project_search", to: "project#index"
+  post "project_search", to: "project#search"
+
+  get "thesis_search", to: "thesis#index"
+  post "thesis_search", to: "thesis#search"
+
   delete "logout", to: "sessions#destroy"
 end
