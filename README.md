@@ -18,3 +18,4 @@
 | 03.04.2022 | 00:30 h    | Setup development environment and repository |
 | 03.04.2022 | 04:00 h    | implementation of register and login         |
 | 19.04.2022 | 01:50 h    | password confirm for regs. start of person search controller |
+| 19.04.2022 | 02:00 h    | small refactoring changes, full implementation of search controllers |
