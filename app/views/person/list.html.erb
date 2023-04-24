@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "list", media: "all" %>
-<%if !Current.user%>
+<%if Current.user%>
   <div class="list-container">
     <% @result.each do |person|%>
       <div class="list-item">
@@ -13,7 +13,7 @@
           <span class="name"><%= person["lastname"]%></span>
           <span><%= person["prefixTitle"]%></span>
           <div class="controls">
-            <a class="button-secondary">Details</a>
+            <%= link_to "Details", person_details_path(id: person["id"]), class: "button-secondary"%>
             <a class="button-secondary">Add Favorites</a>
           </div>
         </div>

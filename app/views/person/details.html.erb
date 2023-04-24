@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "details", media: "all" %>
+<div class="details">
+    <div class="details-image-container">
+        <% if @person["picture_uri"].present? %>
+        <img src="https://tiss.tuwien.ac.at<%= @person["picture_uri"] %>" class="details-img">
+        <% else %>
+        <h4 class="no-image-text">No image available</h4>
+        <% end %>
+    </div>
+    <div class="details-body">
+        <h1 class="details-title"><%= @person["first_name"] %> <%= @person["last_name"] %></h1>
+        <p class="details-text">
+            Email: <%= @person["main_email"] %> <br>
+            Phone Number:  <%= @person["main_phone_number"] %> <br>
+            Preceeding Titles: <%= @person["preceding_titles"] %> <br>
+            Postpositioned Titles: <%= @person["postpositioned_titles"] %></p>
+
+    </div>
+
+    <div class="details-body">
+        <!--      TODO create pages for these links-->
+        <%= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
+        <%= link_to "Courses", "person_details", class: "details-link link-primary" %>
+        <%= link_to "Projects", "person_details", class: "details-link link-primary" %>
+        <%= link_to "Theses", "person_details", class: "details-link link-primary" %>
+    </div>
+
+</div>

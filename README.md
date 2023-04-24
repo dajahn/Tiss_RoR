@@ -7,9 +7,9 @@
 
 ## Jahn David
 
-| Date       | Time spent | Description |
-| ---------- | ---------- | ----------- |
-| xx:xx:xxxx | xx:xx h    | template    |
+| Date       | Time spent | Description                                                       |
+| ---------- | ---------- |-------------------------------------------------------------------|
+| 24.03.2023 | 05:00 h    | finished Person search, added person details, changed font-family |
 
 ## Märzinger Manuel
 

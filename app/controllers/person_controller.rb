@@ -13,6 +13,13 @@ class PersonController < SearchController
         @results = super("https://tiss.tuwien.ac.at/api/person/v21/psuche?q=" + @query)
     end
 
+    def details
+        id = params.require(:id)
+        uri = URI("https://tiss.tuwien.ac.at/api/person/v22/id/#{id}")
+        response = Net::HTTP.get(uri)
+        @person = JSON.parse(response)
+    end
+
     private
 
     def query_param

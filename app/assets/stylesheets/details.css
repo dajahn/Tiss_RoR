@@ -1,0 +1,23 @@
+.details {
+    background: #EFEFEF;
+    padding-bottom: 20px;
+    border-radius: 25px;;
+    padding-left: 10px;
+}
+
+.details-image-container{
+    text-align: center;
+}
+
+.details-img {
+    margin-top: 10px;
+    height: 200px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.details-link {
+    color: #313755 !important;
+    margin-right: 15px;
+}

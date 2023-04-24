@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get "thesis_search", to: "thesis#index"
   post "thesis_search", to: "thesis#search"
 
+  get "person_details", to:"person#details"
+
   delete "logout", to: "sessions#destroy"
 end
