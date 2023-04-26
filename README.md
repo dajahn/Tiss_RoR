@@ -8,9 +8,9 @@
 ## Jahn David
 
 | Date       | Time spent | Description                                                       |
-| ---------- | ---------- |-------------------------------------------------------------------|
-| 24.03.2023 | 05:00 h    | finished Person search, added person details, changed font-family |
-
+|------------|------------|-------------------------------------------------------------------|
+| 24.04.2023 | 05:00 h    | finished Person search, added person details, changed font-family |
+| 26.04.2023 | 04:30 h    | added details functionality; added links for person details       |
 ## Märzinger Manuel
 
 | Date       | Time spent | Description                                  |
