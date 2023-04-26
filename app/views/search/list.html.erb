@@ -1,23 +1,27 @@
 <%= stylesheet_link_tag "list", media: "all" %>
-<%if Current.user%>
+<% if Current.user %>
   <div class="list-container">
-    <% @result.each do |course|%>
-      <div class="list-item">
-        <div class="text-info-box">
-          <h2><%= course["title"]%></h2>
-          <div class="short">
-            <%= sanitize course["short"]%>
-          </div>
-          <div class="controls">
-            <a class="button-secondary">Details</a>
-            <a class="button-secondary">Add Favorites</a>
+    <% if @result.present? %>
+      <% @result.each do |course| %>
+        <div class="list-item">
+          <div class="text-info-box">
+            <h2><%= course["title"] %></h2>
+            <div class="short">
+              <%= sanitize course["short"] %>
+            </div>
+            <div class="controls">
+              <a class="button-secondary">Details</a>
+              <a class="button-secondary">Add Favorites</a>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+      <h1>Oh wow, so much empty :(</h1>
     <% end %>
   </div>
-<% else%>
+<% else %>
   <div>
     <span>You have to be logged in to perform this action.</span>
   </div>
-<% end%>
+<% end %>

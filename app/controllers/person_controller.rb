@@ -18,6 +18,7 @@ class PersonController < SearchController
         uri = URI("https://tiss.tuwien.ac.at/api/person/v22/id/#{id}")
         response = Net::HTTP.get(uri)
         @person = JSON.parse(response)
+        @links_query = "#{@person["first_name"]}+#{@person["last_name"]}"
     end
 
     private

@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   post "sign_in", to: "sessions#create"
 
   get "person_search", to: "person#index"
-  post "person_search", to: "person#search"
+  get "person_results", to: "person#search"
 
   get "course_search", to: "course#index"
-  post "course_search", to: "course#search"
+  get "course_results", to: "course#search"
 
   get "project_search", to: "project#index"
-  post "project_search", to: "project#search"
+  get "project_results", to: "project#search"
 
   get "thesis_search", to: "thesis#index"
-  post "thesis_search", to: "thesis#search"
+  get "thesis_results", to: "thesis#search"
 
   get "person_details", to:"person#details"
 

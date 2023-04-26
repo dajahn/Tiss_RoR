@@ -20,9 +20,9 @@
     <div class="details-body">
         <!--      TODO create pages for these links-->
         <%= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
-        <%= link_to "Courses", "person_details", class: "details-link link-primary" %>
-        <%= link_to "Projects", "person_details", class: "details-link link-primary" %>
-        <%= link_to "Theses", "person_details", class: "details-link link-primary" %>
+        <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
+        <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
+        <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
     </div>
 
 </div>
