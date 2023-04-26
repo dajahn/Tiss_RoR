@@ -14,4 +14,9 @@ class SearchController < ApplicationController
 
         render :list
     end
+
+    def details (url)
+        @doc = Nokogiri::XML(URI.open(url))
+        @doc.remove_namespaces!
+    end
 end
