@@ -11,11 +11,13 @@ class SearchController < ApplicationController
         response = Net::HTTP.get(uri)
         my_hash = JSON.parse(response)
         @result = my_hash["results"]
-
-        render :list
+        if Current.search_page_name != "course"
+            render :list
+        end
     end
 
     def details (url)
+        logger.info url
         @doc = Nokogiri::XML(URI.open(url))
         @doc.remove_namespaces!
     end

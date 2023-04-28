@@ -15,12 +15,13 @@ class ThesisController < SearchController
     def details
         thesis_id = params.require(:id)
         @doc = super("https://tiss.tuwien.ac.at/api/thesis/#{thesis_id}")
-        logger.info @doc.at_xpath("//title/de").content
-
-        logger.info @doc.at_xpath("//instituteName/de").content
-        logger.info @doc.at_xpath("//advisor/givenName").content
-        logger.info @doc.at_xpath("//advisor/familyName").content
-        logger.info @doc.at("//thesisType").content
+        @result = {
+          "title" => @doc.at_xpath("//title/de").content,
+          "subtitle" => "#{@doc.at("//thesisType").content} at #{@doc.at_xpath("//instituteName/de").content}",
+          "subsubtitle" => "Keywords: #{@doc.at("//keywords/de").content}",
+          "text" => "Advised by #{@doc.at_xpath("//advisor/prefixTitle").content} #{@doc.at_xpath("//advisor/givenName").content} #{@doc.at_xpath("//advisor/familyName").content}",
+          "text_2" => nil
+        }
     end
 
     private

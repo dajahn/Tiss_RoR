@@ -2,7 +2,7 @@
 <% if Current.user %>
   <div class="list-container">
     <% if @result.present? %>
-      <% @result.each do |course| %>
+      <% @result.each_with_index do |course, index| %>
         <div class="list-item">
           <div class="text-info-box">
             <h2><%= course["title"] %></h2>
@@ -15,7 +15,7 @@
               <% elsif Current.search_page_name == "thesis" %>
                 <%= link_to "Thesis Details", thesis_details_path(id: course["id"]), class:"button-secondary" %>
               <% elsif Current.search_page_name == "course" %>
-                <%= link_to "Course Details", course_details_url(id: course["courseNum"], semester: course["semester"]), class:"button-secondary" %>
+                <%= link_to "Course Details", course_details_path(id: course["course_num"], semester: course["semester"]), class:"button-secondary" %>
               <% end %>
               <a class="button-secondary">Add Favorites</a>
             </div>

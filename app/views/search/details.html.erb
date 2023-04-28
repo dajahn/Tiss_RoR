@@ -1,28 +1,23 @@
 <div class="details">
-  <h1> Hello world, this is tmp</h1>
-<!--  <div class="details-image-container">-->
-    <%# if @result["picture_uri"].present? %>
-<!--      <img src="https://tiss.tuwien.ac.at<%#= @result["picture_uri"] %>" class="details-img">-->
-    <%# else %>
-<!--      <h4 class="no-image-text">No image available</h4>-->
-    <%# end %>
-<!--  </div>-->
-<!--  <div class="details-body">-->
-<!--    <h1 class="details-title"><%#= @result["first_name"] %> <%#= @result["last_name"] %></h1>-->
-<!--    <p class="details-text">-->
-<!--      Email: <%#= @result["main_email"] %> <br>-->
-<!--      Phone Number:  <%#= @result["main_phone_number"] %> <br>-->
-<!--      Preceeding Titles: <%#= @result["preceding_titles"] %> <br>-->
-<!--      Postpositioned Titles: <%#= @result["postpositioned_titles"] %></p>-->
+  <div class="details-body">
+    <h1 class="details-title"><%= @result["title"] %> </h1>
+    <h3 class="details-subtitle"><%= @result["subtitle"] %> </h3>
+    <h5 class="details-subsubtitle"><%= @result["subsubtitle"] %> </h5>
+    <% if @result["text"].present? %>
+      <p class="details-text">
+        <%= @result["text"] %>
+      </p>
+    <% end %>
+    <% if @result["text_2"].present? %>
+      <p class="details-text">
+        <%= @result["text_2"] %>
+      </p>
+    <% end %>
+  </div>
 
-<!--  </div>-->
-
-<!--  <div class="details-body">-->
-<!--         TODO create pages for these links-->-->
-    <%#= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
-    <%#= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
-    <%#= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
-    <%#= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
-<!--  </div>-->
+  <div class="details-body">
+    <!--TODO create pages for these links-->
+    <%= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
+  </div>
 
 </div>
