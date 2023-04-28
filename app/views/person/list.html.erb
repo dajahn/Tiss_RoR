@@ -13,7 +13,7 @@
             <span class="name"><%= person["firstname"] %></span>
             <span class="name"><%= person["lastname"] %></span>
             <span><%= person["prefixTitle"] %></span>
-            <div class="controls">
+            <div class="controls person-controls">
               <%= link_to "Details", person_details_path(id: person["id"]), class: "button-secondary" %>
               <a class="button-secondary">Add Favorites</a>
             </div>

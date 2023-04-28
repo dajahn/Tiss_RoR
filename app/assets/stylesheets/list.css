@@ -45,6 +45,10 @@
   margin-top: auto;
 }
 
+.person-controls {
+    margin-top: 20px !important;
+}
+
 .controls a {
   box-sizing: border-box;
   font-size: 1em;
