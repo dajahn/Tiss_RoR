@@ -3,6 +3,8 @@
     padding-bottom: 20px;
     border-radius: 25px;;
     padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
 }
 
 .details-image-container{
@@ -20,4 +22,14 @@
 .details-link {
     color: #313755 !important;
     margin-right: 15px;
+}
+
+.details-subtitle {
+    color: #303030;
+    margin-bottom: 5px;
+}
+
+.details-subsubtitle {
+    color: #444444;
+    margin-top:10px;
 }

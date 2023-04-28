@@ -1,16 +1,17 @@
+<%= stylesheet_link_tag "details", media: "all" %>
 <div class="details">
   <div class="details-body">
     <h1 class="details-title"><%= @result["title"] %> </h1>
-    <h3 class="details-subtitle"><%= @result["subtitle"] %> </h3>
-    <h5 class="details-subsubtitle"><%= @result["subsubtitle"] %> </h5>
+    <h2 class="details-subtitle"><%= @result["subtitle"] %> </h2>
+    <h4 class="details-subsubtitle"><%= sanitize @result["subsubtitle"] %> </h4>
     <% if @result["text"].present? %>
       <p class="details-text">
-        <%= @result["text"] %>
+        <%= sanitize @result["text"] %>
       </p>
     <% end %>
     <% if @result["text_2"].present? %>
       <p class="details-text">
-        <%= @result["text_2"] %>
+        <%= sanitize @result["text_2"] %>
       </p>
     <% end %>
   </div>

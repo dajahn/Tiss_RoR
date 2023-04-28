@@ -22,7 +22,7 @@ class ProjectController < SearchController
       "title" => @doc.at_xpath("//shortDescription").content,
       "subtitle" => "#{@doc.at_xpath("//title/de").content}",
       "subsubtitle" => "Projektform: #{@doc.at_xpath("//projectForm").content}, Projekttyp: #{@doc.at_xpath("//projectType").content}",
-      "text" => @doc.at_xpath("//abstract/de").content,
+      "text" => @doc.at_xpath("//abstract/de") ? @doc.at_xpath("//abstract/de").content : nil,
       "text_2" => "Projektbeginn: #{@doc.at_xpath("//projectBegin").content}, Projektende: #{@doc.at_xpath("//projectEnd").content}"
     }
   end
