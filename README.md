@@ -11,6 +11,8 @@
 |------------|------------|-------------------------------------------------------------------|
 | 24.04.2023 | 05:00 h    | finished Person search, added person details, changed font-family |
 | 26.04.2023 | 04:30 h    | added details functionality; added links for person details       |
+| 28.04.2023 | 02:00 h    | finished details functionality; added css                         |
+
 ## Märzinger Manuel
 
 | Date       | Time spent | Description                                  |
