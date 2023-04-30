@@ -15,7 +15,11 @@
             <span><%= person["prefixTitle"] %></span>
             <div class="controls person-controls">
               <%= link_to "Details", person_details_path(id: person["id"]), class: "button-secondary" %>
-              <a class="button-secondary">Add Favorites</a>
+              <% if !person["isFav"] %>
+                <%= button_to "Add favorites", person_favorite_path, class: "btn-to button-secondary", method: :post, params: { id: person["id"] }  %>
+              <% else %>
+                <%= button_to "Remove from favorites", person_favorite_path, class: "button-secondary", method: :delete, params: { id: person["id"] }  %>
+              <% end %>
             </div>
           </div>
         </div>

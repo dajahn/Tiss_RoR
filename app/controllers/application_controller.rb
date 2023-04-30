@@ -23,4 +23,40 @@ class ApplicationController < ActionController::Base
             end
         end
     end
+
+    def addFavorite
+        objectId = params[:id]
+
+        fav = Favorite.new(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id)
+
+        if fav.valid?
+            fav.save
+            flash[:notice] = "The entry has been favorited successfully."
+        else
+            flash[:alert] = fav.errors.full_messages
+        end
+
+        redirect_to request.original_url
+    end
+
+    def removeFavorite
+        objectId = params[:id]
+
+        fav = Favorite.find_by(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id)
+
+        if !fav.nil?
+            fav.destroy
+            flash[:notice] = "The entry has been removed successfully."
+        else
+            flash[:alert] = "This entry was not favorited and thus cannot be removed"
+        end
+
+        redirect_to request.original_url
+    end
+
+    def isFav
+        objectId = params[:id]
+
+        !Favorite.find_by(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id).nil?
+    end
 end

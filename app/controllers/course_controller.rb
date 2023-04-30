@@ -29,8 +29,21 @@ class CourseController < SearchController
       "subtitle" => "Course: " +@doc.at_xpath("//course/courseNumber").content + ", in #{@doc.at_xpath("//course/semesterCode").content}, as #{@doc.at_xpath("//course/courseType").content}",
       "subsubtitle" => @doc.at_xpath("//objective/de").content,
       "text" => "#{@doc.at_xpath("//teachingContent/de").content}",
-      "text_2" => "#{ @doc.at_xpath("//additionalInformation/de").content}"
+      "text_2" => "#{ @doc.at_xpath("//additionalInformation/de").content}",
+      "isFav" => isFav()
     }
+  end
+
+  def addFavorite
+      super()
+  end
+
+  def removeFavorite
+      super()
+  end
+
+  def isFav
+      super()
   end
 
   private

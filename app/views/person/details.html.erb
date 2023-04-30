@@ -1,28 +1,28 @@
 <%= stylesheet_link_tag "details", media: "all" %>
 <div class="details">
-    <div class="details-image-container">
-        <% if @person["picture_uri"].present? %>
-        <img src="https://tiss.tuwien.ac.at<%= @person["picture_uri"] %>" class="details-img">
-        <% else %>
-        <h4 class="no-image-text">No image available</h4>
-        <% end %>
-    </div>
-    <div class="details-body">
-        <h1 class="details-title"><%= @person["first_name"] %> <%= @person["last_name"] %></h1>
-        <p class="details-text">
-            Email: <%= @person["main_email"] %> <br>
-            Phone Number:  <%= @person["main_phone_number"] %> <br>
-            Preceeding Titles: <%= @person["preceding_titles"] %> <br>
-            Postpositioned Titles: <%= @person["postpositioned_titles"] %></p>
-
-    </div>
-
-    <div class="details-body">
-        <!--      TODO create pages for these links-->
-        <%= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
-        <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
-        <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
-        <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
-    </div>
-
+  <div class="details-image-container">
+    <% if @person["picture_uri"].present? %>
+      <img src="https://tiss.tuwien.ac.at<%= @person["picture_uri"] %>" class="details-img">
+    <% else %>
+      <h4 class="no-image-text">No image available</h4>
+    <% end %>
+  </div>
+  <div class="details-body">
+    <h1 class="details-title"><%= @person["first_name"] %> <%= @person["last_name"] %></h1>
+    <p class="details-text">
+      Email: <%= @person["main_email"] %> <br>
+      Phone Number:  <%= @person["main_phone_number"] %> <br>
+      Preceeding Titles: <%= @person["preceding_titles"] %> <br>
+      Postpositioned Titles: <%= @person["postpositioned_titles"] %></p>
+  </div>
+  <div class="details-controls">
+    <% if !@isFav %>
+      <%= button_to "Add to favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :post, params: { id: @person["tiss_id"] } %>
+    <% else %>
+      <%= button_to "Remove from favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @person["tiss_id"] }  %>
+    <%end%>
+    <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
+    <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
+    <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
+  </div>
 </div>

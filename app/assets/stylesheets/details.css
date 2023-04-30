@@ -19,6 +19,12 @@
     border-radius: 20px;
 }
 
+.details-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .details-link {
     color: #313755 !important;
     margin-right: 15px;
@@ -32,4 +38,8 @@
 .details-subsubtitle {
     color: #444444;
     margin-top:10px;
+}
+
+.details-controls {
+    display: flex;
 }

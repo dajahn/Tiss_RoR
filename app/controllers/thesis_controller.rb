@@ -24,6 +24,18 @@ class ThesisController < SearchController
         }
     end
 
+    def addFavorite
+        super()
+    end
+
+    def removeFavorite
+        super()
+    end
+
+    def isFav
+        super()
+    end
+
     private
 
     def query_param

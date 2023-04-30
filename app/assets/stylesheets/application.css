@@ -14,6 +14,11 @@
  *= require_self
  */
 
+.btn-to {
+  all: unset;
+  font-size: inherit;
+}
+
 html,
 body {
   height: 100%;

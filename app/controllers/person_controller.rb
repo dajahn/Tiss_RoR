@@ -19,6 +19,19 @@ class PersonController < SearchController
         response = Net::HTTP.get(uri)
         @person = JSON.parse(response)
         @links_query = "#{@person["first_name"]}+#{@person["last_name"]}"
+        @isFav = isFav()
+    end
+
+    def addFavorite
+        super()
+    end
+
+    def removeFavorite
+        super()
+    end
+
+    def isFav
+        super()
     end
 
     private

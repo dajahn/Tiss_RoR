@@ -15,10 +15,11 @@
       </p>
     <% end %>
   </div>
-
   <div class="details-body">
-    <!--TODO create pages for these links-->
-    <%= link_to "Add to favorites", "person_details", class: "details-link link-primary" %>
+    <% if !@isFav %>
+      <%= button_to "Add to favorites", "#{Current.search_page_name}_favorite", class: "btn-to details-link link-primary details-button", method: :post, params: { id: @id } %>
+    <% else %>
+      <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @id }  %>
+    <%end%>
   </div>
-
 </div>

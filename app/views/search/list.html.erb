@@ -17,7 +17,19 @@
               <% elsif Current.search_page_name == "course" %>
                 <%= link_to "Course Details", course_details_path(id: course["course_num"], semester: course["semester"]), class:"button-secondary" %>
               <% end %>
-              <a class="button-secondary">Add Favorites</a>
+              <% if Current.search_page_name == "course" %>
+                <% if !course["isFav"] %>
+                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["course_num"] }  %>
+                <% else %>
+                  <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "button-secondary", method: :delete, params: { id: course["course_num"] }  %>
+                <% end %>
+              <% else %>
+                <% if !course["isFav"] %>
+                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["id"] }  %>
+                <% else %>
+                  <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "button-secondary", method: :delete, params: { id: course["id"] }  %>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
