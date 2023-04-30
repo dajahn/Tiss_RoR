@@ -21,4 +21,5 @@
 | 03.04.2022 | 04:00 h    | implementation of register and login         |
 | 19.04.2022 | 01:50 h    | password confirm for regs. start of person search controller |
 | 24.04.2022 | 02:00 h    | small refactoring changes, full implementation of search controllers |
-| 24.04.2022 | 04:30 h    | can now add favorites |
+| 30.04.2022 | 04:30 h    | can now add favorites |
+| 30.04.2022 | 00:50 h    | can now add augments |
