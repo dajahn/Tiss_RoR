@@ -43,3 +43,28 @@
 .details-controls {
     display: flex;
 }
+
+.augments {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.inputs {
+    width: 100%;
+}
+
+.augments>.augment-row:last-child {
+    margin-bottom: 10px;
+}
+
+.augment-row {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.area {
+    height: 100px;
+}

@@ -17,7 +17,21 @@
   </div>
   <div class="details-body">
     <% if !@isFav %>
-      <%= button_to "Add to favorites", "#{Current.search_page_name}_favorite", class: "btn-to details-link link-primary details-button", method: :post, params: { id: @id } %>
+      <!-- Will only be displayed if not already favorited. Can only be edited in favourites view.-->
+      <%= form_with url: "#{Current.search_page_name}_favorite", method: :post do |form|%>
+        <div class="augments">
+          <div class="augment-row">
+            <label for="keywords">Keywords:</label>
+            <input class="inputs" id="keywords" name="keywords" type="text" placeholder="SS2023, STEOP, ...">
+          </div>
+          <div class="augment-row">
+            <label for="notes">Personal Notes:</label>
+            <textarea class="area inputs" id="notes" name="notes" type="text" placeholder="Some personal notes..."></textarea>
+          </div>
+        </div>
+        <%= hidden_field_tag :id, @id%>
+        <%= form.submit "Add to favorites" , class: "btn-to details-link link-primary details-button" %>
+      <%end %>
     <% else %>
       <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @id }  %>
     <%end%>

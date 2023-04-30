@@ -16,13 +16,30 @@
       Postpositioned Titles: <%= @person["postpositioned_titles"] %></p>
   </div>
   <div class="details-controls">
+    <div class="flex">
+      <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
+      <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
+      <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
+    </div>
+  </div>
+  <div class="augments">
     <% if !@isFav %>
-      <%= button_to "Add to favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :post, params: { id: @person["tiss_id"] } %>
+      <%= form_with url: person_favorite_path, method: :post do |form|%>
+        <div class="augments">
+          <div class="augment-row">
+            <label for="keywords">Keywords:</label>
+            <input class="inputs" id="keywords" name="keywords" type="text" placeholder="Keywords...">
+          </div>
+          <div class="augment-row">
+            <label for="notes">Personal Notes:</label>
+            <textarea class="area inputs" id="notes" name="notes" type="text" placeholder="Some personal notes..."></textarea>
+          </div>
+        </div>
+        <%= hidden_field_tag :id, @person["tiss_id"]%>
+        <%= form.submit "Add to favorites" , class: "btn-to details-link link-primary details-button" %>
+      <%end %>
     <% else %>
       <%= button_to "Remove from favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @person["tiss_id"] }  %>
     <%end%>
-    <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
-    <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
-    <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
   </div>
 </div>
