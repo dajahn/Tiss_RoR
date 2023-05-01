@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'open-uri'
 
 class SearchController < ApplicationController
     def index(search_type)
