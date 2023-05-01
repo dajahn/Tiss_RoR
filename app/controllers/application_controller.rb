@@ -27,17 +27,6 @@ class ApplicationController < ActionController::Base
     def addFavorite
         objectId = params[:id]
 
-        puts params.inspect
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-
         fav = Favorite.new(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id)
 
         if fav.valid?
