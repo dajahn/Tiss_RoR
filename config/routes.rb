@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post "thesis_favorite", to:"thesis#addFavorite"
   delete "thesis_favorite", to:"thesis#removeFavorite"
 
+  get "favorites", to: "favorites#list"
 
   delete "logout", to: "sessions#destroy"
 end

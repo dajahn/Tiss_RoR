@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag "list", media: "all" %>
+<%= stylesheet_link_tag "favorites-list", media: "all" %>
+<% if Current.user %>
+  <div class="header">
+    <%= form_with url: "favorites", method: :get do |f| %>
+      <%= f.label :listName, "List Name" %>
+      <div class="select">
+      <%= f.select :listName, [['Persons', 'person'], ['Courses', 'course'], ['Thesis', 'thesis'], ['Projects', 'project']], selected: @parameters["listName"] %>
+      </div>
+      <%= f.label :paramName, "Parameter to sort after" %>
+      <div class="select">
+      <%= f.select :paramName, [['Name', 'title'], ['Creation Date', 'created_at']], selected: @parameters["paramName"]  %>
+      </div>
+      <%= f.label :order, "Sorting order" %>
+      <div class="select">
+      <%= f.select :order, [['Descending', 'desc'], ['Ascending', 'asc']], selected: @parameters["order"]  %>
+      </div>
+        <%= f.submit "Load", class: "button-secondary load-button"%>
+    <% end %>
+  </div>
+
+
+  <div class="list-container">
+    <% if @result.present? %>
+      <% @result.each_with_index do |element, index| %>
+        <div class="list-item">
+          <div class="text-info-box">
+            <h2><%= element["title"] %></h2>
+            <div class="controls">
+              <% if element["entryType"] == "project" %>
+                <%= link_to "Details", project_details_path(id: element["objectId"]), class: "button-secondary" %>
+              <% elsif element["entryType"] == "thesis" %>
+                <%= link_to "Thesis Details", thesis_details_path(id: element["objectId"]), class: "button-secondary" %>
+              <% elsif element["entryType"] == "course" %>
+                <%= link_to "Course Details", course_details_path(id: element["objectId"], semester:  element["title"].match(/(\d*[W|S])/)[1]), class: "button-secondary" %>
+              <% elsif element["entryType"] == "person" %>
+                <%= link_to "Person Details", person_details_path(id: element["objectId"]), class: "button-secondary" %>
+              <% end %>
+              <%= button_to "Remove from favorites", "#{element["entryType"]}_favorite", class: "button-secondary", method: :delete, params: { id: element["objectId"] } %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h1>Oh wow, so much empty :(</h1>
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    <span>You have to be logged in to perform this action.</span>
+  </div>
+<% end %>

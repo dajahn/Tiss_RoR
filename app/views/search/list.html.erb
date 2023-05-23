@@ -19,13 +19,13 @@
               <% end %>
               <% if Current.search_page_name == "course" %>
                 <% if !course["isFav"] %>
-                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["course_num"] }  %>
+                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["course_num"], title: course["title"]} %>
                 <% else %>
                   <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "button-secondary", method: :delete, params: { id: course["course_num"] }  %>
                 <% end %>
               <% else %>
                 <% if !course["isFav"] %>
-                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["id"] }  %>
+                  <%= button_to "Add favorites", "#{Current.search_page_name}_favorite", class: "btn-to button-secondary", method: :post, params: { id: course["id"], title: course["title"] }  %>
                 <% else %>
                   <%= button_to "Remove from favorites", "#{Current.search_page_name}_favorite", class: "button-secondary", method: :delete, params: { id: course["id"] }  %>
                 <% end %>

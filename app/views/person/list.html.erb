@@ -16,7 +16,7 @@
             <div class="controls person-controls">
               <%= link_to "Details", person_details_path(id: person["id"]), class: "button-secondary" %>
               <% if !person["isFav"] %>
-                <%= button_to "Add favorites", person_favorite_path, class: "btn-to button-secondary", method: :post, params: { id: person["id"] }  %>
+                <%= button_to "Add favorites", person_favorite_path, class: "btn-to button-secondary", method: :post, params: { id: person["id"], title: person["firstname"] +" " + person["lastname"] }  %>
               <% else %>
                 <%= button_to "Remove from favorites", person_favorite_path, class: "button-secondary", method: :delete, params: { id: person["id"] }  %>
               <% end %>
