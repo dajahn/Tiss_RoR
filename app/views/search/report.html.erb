@@ -1,0 +1,57 @@
+<%= stylesheet_link_tag "list", media: "all" %>
+<%= stylesheet_link_tag "favorites-list", media: "all" %>
+<% if Current.user %>
+  <div class="header">
+    <%= form_with url: "#{Current.search_page_name}_report", method: :get do |f| %>
+      <%= f.check_box :showNotes, { checked: @parameters["showNotes"].to_i == 1 } %>
+      <%= f.label :showNotes, "Show personal annotations" %>
+      <%= f.submit "Generate", class: "button-secondary load-button"%>
+      <p>You can directly print from this page. All unnecessary text will be removed in the print view.</p>
+    <% end %>
+  </div>
+  <div class="list-container">
+    <% if @elements.present? %>
+      <% @elements.each_with_index do |element, index| %>
+        <div class="list-item">
+          <div class="text-info-box">
+            <h3><%= element["title"] %></h3>
+            <p class="details-text">
+              <%= element["subtitle"] %> <br>
+              <%= sanitize element["subsubtitle"] %> <br>
+              <% if @favorites[index]["text"].present? %>
+                <p class="details-text">
+                  <%= sanitize @favorites[index]["text"] %>
+                </p>
+              <% end %>
+              <% if @favorites[index]["text_2"].present? %>
+                <p class="details-text">
+                  <%= sanitize @favorites[index]["text_2"] %>
+                </p>
+              <% end %>
+            </p>
+            <% if @parameters["showNotes"].to_i == 1 %>
+              <% if @favorites[index]["keywords"].present?%>
+                <div class="info">
+                  <span>Keywords: </span>
+                  <span><%= @favorites[index].keywords %></span>
+                </div>
+              <%end%>
+              <% if @favorites[index]["notes"].present?%>
+                <div class="info">
+                  <span>Personal Notes: </span>
+                  <span><%= @favorites[index].keywords %></span>
+                </div>
+              <%end%>
+            <%end%>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h1>Oh wow, so much empty :(</h1>
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    <span>You have to be logged in to perform this action.</span>
+  </div>
+<% end %>

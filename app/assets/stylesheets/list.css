@@ -63,4 +63,28 @@
     font-size: 1.5em;
 }
 
+.prompt {
+  color: white;
+  margin-bottom: 0px;
+}
+
+@media print {
+  .list-item {
+    height: fit-content;
+    padding: 0;
+    border-radius: 0;
+    color: white;
+    margin-bottom: 0;
+    gap: 0;
+  }
+
+  .list-container {
+    margin: 0;
+  }
+
+  .text-info-box {
+    display: block;
+  }
+}
+
 

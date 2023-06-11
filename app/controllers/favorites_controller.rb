@@ -1,13 +1,9 @@
 class FavoritesController < ApplicationController
-
-
-
   def list
-
     @parameters = {
       "listName" => params[:listName],
-    "paramName" =>params[:paramName],
-    "order" => params[:order]
+      "paramName" =>params[:paramName],
+      "order" => params[:order],   
     }
 
     if @parameters["order"].nil?
@@ -33,11 +29,7 @@ class FavoritesController < ApplicationController
 
   end
 
-
   def get_semester_from_course_name(name)
-    matches = name.match /(\d*[W|S])/
-    matches[1]
+    super(name)
   end
-
-
 end

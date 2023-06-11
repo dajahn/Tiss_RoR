@@ -47,6 +47,14 @@ class SearchController < ApplicationController
         super()
     end
 
+    def report(listname)
+        @parameters = {
+            "showNotes" => params[:showNotes] 
+        }
+  
+        @favorites = Favorite.where(entryType: listname, user_id: Current.user)
+    end
+
     private
     def setId
         @id = params[:id]

@@ -13,26 +13,32 @@ Rails.application.routes.draw do
   get "person_details", to:"person#details"
   post "person_favorite", to:"person#addFavorite"
   delete "person_favorite", to:"person#removeFavorite"
+  get "person_report", to: "person#report"
 
   get "course_search", to: "course#index"
   get "course_results", to: "course#search"
   get "course_details", to:"course#details"
   post "course_favorite", to:"course#addFavorite"
   delete "course_favorite", to:"course#removeFavorite"
+  get "course_report", to: "course#report"
 
   get "project_search", to: "project#index"
   get "project_results", to: "project#search"
   get "project_details", to:"project#details"
   post "project_favorite", to:"project#addFavorite"
   delete "project_favorite", to:"project#removeFavorite"
+  get "project_report", to: "project#report"
 
   get "thesis_search", to: "thesis#index"
   get "thesis_results", to: "thesis#search"
   get "thesis_details", to:"thesis#details"
   post "thesis_favorite", to:"thesis#addFavorite"
   delete "thesis_favorite", to:"thesis#removeFavorite"
+  get "thesis_report", to: "thesis#report"
 
   get "favorites", to: "favorites#list"
+
+  get "reports", to: "search#menu"
 
   delete "logout", to: "sessions#destroy"
 end

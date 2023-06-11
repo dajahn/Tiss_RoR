@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "list", media: "all" %>
+<%= stylesheet_link_tag "favorites-list", media: "all" %>
+<% if Current.user %>
+  <div class="header">
+    <%= form_with url: "/person_report", method: :get do |f| %>
+      <%= f.check_box :showNotes, { checked: @parameters["showNotes"].to_i == 1 } %>
+      <%= f.label :showNotes, "Show personal annotations" %>
+      <%= f.submit "Generate", class: "button-secondary load-button"%>
+      <p class="prompt">You can directly print from this page. All unnecessary text will be removed in the print view.</p>
+    <% end %>
+  </div>
+  <div class="list-container">
+    <% if @people.present? %>
+      <% @people.each_with_index do |person, index| %>
+        <div class="list-item">
+          <div class="text-info-box">
+            <h3><%= @favorites[index]["title"] %></h3>
+            <p class="details-text">
+              Email: <%= person["main_email"] %> <br>
+              Phone Number:  <%= person["main_phone_number"] %> <br>
+              Preceeding Titles: <%= person["preceding_titles"] %> <br>
+              Postpositioned Titles: <%= person["postpositioned_titles"] %>
+            </p>
+            <% if @parameters["showNotes"].to_i == 1 %>
+              <% if @favorites[index]["keywords"].present?%>
+                <div class="info">
+                  <span>Keywords: </span>
+                  <span><%= @favorites[index].keywords %></span>
+                </div>
+              <%end%>
+              <% if @favorites[index]["notes"].present?%>
+                <div class="info">
+                  <span>Personal Notes: </span>
+                  <span><%= @favorites[index].keywords %></span>
+                </div>
+              <%end%>
+            <%end%>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h1>Oh wow, so much empty :(</h1>
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    <span>You have to be logged in to perform this action.</span>
+  </div>
+<% end %>

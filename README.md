@@ -24,3 +24,4 @@
 | 24.04.2022 | 02:00 h    | small refactoring changes, full implementation of search controllers |
 | 30.04.2022 | 04:30 h    | can now add favorites |
 | 30.04.2022 | 00:50 h    | can now add augments |
+| 11.06.2022 | 03:30 h    | added printable list for each category |

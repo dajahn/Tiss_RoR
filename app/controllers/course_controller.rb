@@ -21,8 +21,21 @@ class CourseController < SearchController
   end
 
   def details
-    course_id = params.require(:id)
-    course_semester = params.require(:semester)
+    
+    if @calledByReport == 1
+      course_id = @reportId
+      @reportId = nil
+    else
+      course_id = params.require(:id)
+    end
+
+    if @calledByReport == 1
+      course_semester = @reportSem
+      @calledByReport = nil
+      @reportSem = nil
+    else
+      course_semester = params.require(:semester)
+    end
     @doc = super("https://tiss.tuwien.ac.at/api/course/#{course_id}-#{course_semester}")
     @result = {
       "title" => @doc.at_xpath("//title/de").content,
@@ -44,6 +57,18 @@ class CourseController < SearchController
 
   def isFav
       super()
+  end
+
+  def report
+    super("course")
+    @elements = []
+    for i in 0..@favorites.count-1
+        @calledByReport = 1
+        @reportId = @favorites[i]["objectId"]
+        @reportSem = get_semester_from_course_name(@favorites[i]["title"][-5..-1])
+        e = details
+        @elements.push(e)
+    end
   end
 
   private

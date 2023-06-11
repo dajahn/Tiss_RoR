@@ -27,7 +27,9 @@ class ApplicationController < ActionController::Base
     def addFavorite
         objectId = params[:id]
         title = params[:title]
-        fav = Favorite.new(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id, title: title)
+        keywords = params[:keywords]
+        notes = params[:notes]
+        fav = Favorite.new(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id, title: title, keywords: keywords, notes: notes)
 
         if fav.valid?
             fav.save
@@ -58,5 +60,10 @@ class ApplicationController < ActionController::Base
         objectId = params[:id]
 
         !Favorite.find_by(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id).nil?
+    end
+
+    def get_semester_from_course_name(name)
+        matches = name.match /(\d*[W|S])/
+        matches[1]
     end
 end

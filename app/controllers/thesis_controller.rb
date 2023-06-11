@@ -13,7 +13,13 @@ class ThesisController < SearchController
     end
 
     def details
-        thesis_id = params.require(:id)
+        if @calledByReport == 1
+            thesis_id = @reportId
+            @calledByReport = nil
+            @reportId = nil
+        else
+            thesis_id = params.require(:id)
+        end
         @doc = super("https://tiss.tuwien.ac.at/api/thesis/#{thesis_id}")
         @result = {
           "title" => @doc.at_xpath("//title/de").content,
@@ -34,6 +40,34 @@ class ThesisController < SearchController
 
     def isFav
         super()
+    end
+
+    def report
+        super("thesis")
+        @elements = []
+        for i in 0..@favorites.count-1
+            @calledByReport = 1
+            @reportId = @favorites[i]["objectId"]
+            e = details
+            @elements.push(e)
+        end
+
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts "\n"
+        puts @elements
     end
 
     private

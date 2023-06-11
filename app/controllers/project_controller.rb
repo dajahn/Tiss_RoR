@@ -16,7 +16,13 @@ class ProjectController < SearchController
   end
 
   def details
-    project_id = params.require(:id)
+    if @calledByReport == 1
+      project_id = @reportId
+      @calledByReport = nil
+      @reportId = nil
+    else
+      project_id = params.require(:id)
+    end
     @doc = super("https://tiss.tuwien.ac.at/api/pdb/rest/project/v3/#{project_id}")
     @result = {
       "title" => @doc.at_xpath("//shortDescription").content,
@@ -37,6 +43,17 @@ class ProjectController < SearchController
 
   def isFav
       super()
+  end
+
+  def report
+    super("project")
+    @elements = []
+    for i in 0..@favorites.count-1
+        @calledByReport = 1
+        @reportId = @favorites[i]["objectId"]
+        e = details
+        @elements.push(e)
+    end
   end
   
   private
