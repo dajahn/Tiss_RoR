@@ -22,8 +22,6 @@ class PersonController < SearchController
         @results = super(url)
     end
 
-    def 
-
     def details
         id = params.require(:id)
         call_api(id)
