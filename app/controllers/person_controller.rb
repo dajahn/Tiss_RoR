@@ -9,24 +9,33 @@ class PersonController < SearchController
     end
 
     def search
-        @query = query_param
-        @results = super("https://tiss.tuwien.ac.at/api/person/v21/psuche?q=" + @query)
+        query = query_param
+        url = get_search_url(query)
+        super(url)
     end
 
+    def get_search_url(query)
+        return "https://tiss.tuwien.ac.at/api/person/v21/psuche?q=" + query;
+    end
+
+    def get_search_results(url)
+        @results = super(url)
+    end
+
+    def 
+
     def details
-        if @calledByReport == 1
-            id = @reportId
-            @calledByReport = nil
-            @reportId = nil
-        else
-            id = params.require(:id)
-        end
-        uri = URI("https://tiss.tuwien.ac.at/api/person/v22/id/#{id}")
-        response = Net::HTTP.get(uri)
-        @person = JSON.parse(response)
+        id = params.require(:id)
+        call_api(id)
         @links_query = "#{@person["first_name"]}+#{@person["last_name"]}"
         @isFav = isFav()
         return @person
+    end
+
+    def call_api(id)
+        uri = URI("https://tiss.tuwien.ac.at/api/person/v22/id/#{id}")
+        response = Net::HTTP.get(uri)
+        @person = JSON.parse(response)
     end
 
     def addFavorite
@@ -45,9 +54,8 @@ class PersonController < SearchController
         super("person")
         @people = []
         for i in 0..@favorites.count-1
-            @calledByReport = 1
             @reportId = @favorites[i]["objectId"]
-            p = details
+            p = call_api(@reportId)
             @people.push(p)
         end
     end

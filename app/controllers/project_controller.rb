@@ -11,19 +11,30 @@ class ProjectController < SearchController
   end
 
   def search
-    @query = query_param
-    @results = super("https://tiss.tuwien.ac.at/api/search/projectFullSearch/v1.0/projects?searchterm=" + @query)
+    query = query_param
+    url = get_search_url(query)
+    super(url)
+  end
+
+  def get_search_url(query)
+    return "https://tiss.tuwien.ac.at/api/search/projectFullSearch/v1.0/projects?searchterm=" + query
+  end
+
+  def get_search_results(url)
+    @results = super(url)
   end
 
   def details
-    if @calledByReport == 1
-      project_id = @reportId
-      @calledByReport = nil
-      @reportId = nil
-    else
-      project_id = params.require(:id)
-    end
+    project_id = params.require(:id)
+    call_api(project_id)
+    extract_data()
+  end
+
+  def call_api(project_id)
     @doc = super("https://tiss.tuwien.ac.at/api/pdb/rest/project/v3/#{project_id}")
+  end
+
+  def extract_data
     @result = {
       "title" => @doc.at_xpath("//shortDescription").content,
       "subtitle" => "#{@doc.at_xpath("//title/de").content}",
@@ -49,9 +60,9 @@ class ProjectController < SearchController
     super("project")
     @elements = []
     for i in 0..@favorites.count-1
-        @calledByReport = 1
         @reportId = @favorites[i]["objectId"]
-        e = details
+        call_api(@reportId)
+        e = extract_data()
         @elements.push(e)
     end
   end

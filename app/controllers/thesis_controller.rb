@@ -8,19 +8,30 @@ class ThesisController < SearchController
     end
 
     def search
-        @query = query_param
-        @results = super("https://tiss.tuwien.ac.at/api/search/thesis/v1.0/quickSearch?searchterm=" + @query)
+        query = query_param
+        url = get_search_url(query)
+        super(url)
+    end
+
+    def get_search_url(query)
+        return "https://tiss.tuwien.ac.at/api/search/thesis/v1.0/quickSearch?searchterm=" + query
+    end
+
+    def get_search_results(url)
+        @results = super(url)
     end
 
     def details
-        if @calledByReport == 1
-            thesis_id = @reportId
-            @calledByReport = nil
-            @reportId = nil
-        else
-            thesis_id = params.require(:id)
-        end
+        thesis_id = params.require(:id)
+        call_api(thesis_id)
+        extract_data()
+    end
+
+    def call_api(thesis_id)
         @doc = super("https://tiss.tuwien.ac.at/api/thesis/#{thesis_id}")
+    end
+
+    def extract_data  
         @result = {
           "title" => @doc.at_xpath("//title/de").content,
           "subtitle" => "#{@doc.at("//thesisType").content} at #{@doc.at_xpath("//instituteName/de").content}",
@@ -46,28 +57,11 @@ class ThesisController < SearchController
         super("thesis")
         @elements = []
         for i in 0..@favorites.count-1
-            @calledByReport = 1
             @reportId = @favorites[i]["objectId"]
-            e = details
+            call_api(@reportId)
+            e = extract_data()
             @elements.push(e)
         end
-
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts "\n"
-        puts @elements
     end
 
     private

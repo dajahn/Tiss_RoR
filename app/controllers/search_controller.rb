@@ -7,11 +7,8 @@ class SearchController < ApplicationController
         @search_type = search_type
     end
 
-    def search (query)
-        uri = URI(query)
-        response = Net::HTTP.get(uri)
-        my_hash = JSON.parse(response)
-        @result = my_hash["results"]
+    def search (url)
+        get_search_results(url)
  
         for i in 0..@result.count-1
             if Current.search_page_name == "course"
@@ -27,10 +24,21 @@ class SearchController < ApplicationController
         end
     end
 
+    def get_search_results(url)
+        uri = URI(url)
+        response = Net::HTTP.get(uri)
+        my_hash = JSON.parse(response)
+        @result = my_hash["results"]
+    end
+
     def details (url)
         setId()
         @isFav = isFav()
         logger.info url
+        call_api(url)
+    end
+
+    def call_api(url)
         @doc = Nokogiri::XML(URI.open(url))
         @doc.remove_namespaces!
     end
