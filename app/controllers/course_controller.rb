@@ -8,35 +8,38 @@ class CourseController < SearchController
   end
 
   def search
-    @query = query_param
-    super("https://tiss.tuwien.ac.at/api/search/course/v1.0/quickSearch?searchterm=" + @query)
-
-    @result.each do |res|
-      res["course_num"] = get_course_number_from_url(res["detail_url"])
-      res["semester"] = get_course_semester_from_url(res["detail_url"])
-    end
+    query = query_param
+    url = get_search_url(query)
+    super(url)
+    set_course_props()
     logger.info @result
     @result
     render :list
   end
 
-  def details
-    
-    if @calledByReport == 1
-      course_id = @reportId
-      @reportId = nil
-    else
-      course_id = params.require(:id)
-    end
+  def get_search_url(query)
+    return "https://tiss.tuwien.ac.at/api/search/course/v1.0/quickSearch?searchterm=" + query
+  end
 
-    if @calledByReport == 1
-      course_semester = @reportSem
-      @calledByReport = nil
-      @reportSem = nil
-    else
-      course_semester = params.require(:semester)
+  def set_course_props
+    @result.each do |res|
+      res["course_num"] = get_course_number_from_url(res["detail_url"])
+      res["semester"] = get_course_semester_from_url(res["detail_url"])
     end
+  end
+
+  def details
+    course_id = params.require(:id)
+    course_semester = params.require(:semester)
+    call_api(course_id, course_semester)
+    extract_data()
+  end
+
+  def call_api(course_id, course_semester)
     @doc = super("https://tiss.tuwien.ac.at/api/course/#{course_id}-#{course_semester}")
+  end
+
+  def extract_data
     @result = {
       "title" => @doc.at_xpath("//title/de").content,
       "subtitle" => "Course: " +@doc.at_xpath("//course/courseNumber").content + ", in #{@doc.at_xpath("//course/semesterCode").content}, as #{@doc.at_xpath("//course/courseType").content}",
@@ -63,10 +66,10 @@ class CourseController < SearchController
     super("course")
     @elements = []
     for i in 0..@favorites.count-1
-        @calledByReport = 1
         @reportId = @favorites[i]["objectId"]
         @reportSem = get_semester_from_course_name(@favorites[i]["title"][-5..-1])
-        e = details
+        call_api(@reportId, @reportSem)
+        e = extract_data()
         @elements.push(e)
     end
   end
