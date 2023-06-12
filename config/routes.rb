@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "person_favorite", to:"person#addFavorite"
   delete "person_favorite", to:"person#removeFavorite"
   get "person_report", to: "person#report"
+  get "person_full_report", to: "person#fullReport"
 
   get "course_search", to: "course#index"
   get "course_results", to: "course#search"

@@ -23,8 +23,8 @@ class PersonController < SearchController
     end
 
     def details
-        id = params.require(:id)
-        call_api(id)
+        @id = params.require(:id)
+        call_api(@id)
         @links_query = "#{@person["first_name"]}+#{@person["last_name"]}"
         @isFav = isFav()
         return @person
@@ -56,6 +56,23 @@ class PersonController < SearchController
             p = call_api(@reportId)
             @people.push(p)
         end
+    end
+
+    
+    def fullReport
+        @data = []
+        person = call_api(params[:id])
+        @data.push(person)
+
+        [ProjectController, ThesisController].each do |controller|
+            currController = controller.new
+            url = currController.get_search_url(params[:query])
+            results = currController.get_search_results(url)
+            @data.push(results)
+        end
+
+        currController = CourseController.new
+        
     end
 
     private

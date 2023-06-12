@@ -20,6 +20,7 @@
       <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
       <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
       <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
+      <%= link_to "Full Report", person_full_report_path(query: @links_query, id: @id), class: "details-link link-primary" %>
     </div>
   </div>
   <div class="augments">
