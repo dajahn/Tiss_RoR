@@ -64,15 +64,22 @@ class PersonController < SearchController
         person = call_api(params[:id])
         @data.push(person)
 
-        [ProjectController, ThesisController].each do |controller|
+        [CourseController, ProjectController, ThesisController].each do |controller|
             currController = controller.new
             url = currController.get_search_url(params[:query])
             results = currController.get_search_results(url)
+            
             @data.push(results)
         end
 
-        currController = CourseController.new
-        
+        if !params[:search].nil? && params[:search].length > 0
+            query = params[:search]
+            for i in 1..@data.length-1
+                for j in 0..@data[i].length-1
+                    @data[i][j]['title'] = @data[i][j]['title'].gsub(/#{query}/, '<span class="highlight">\0</span>').html_safe
+                end
+            end
+        end
     end
 
     private

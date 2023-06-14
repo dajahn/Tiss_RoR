@@ -17,6 +17,11 @@ class CourseController < SearchController
     render :list
   end
 
+  def get_search_results(url)
+    super(url)
+    set_course_props()
+  end
+
   def get_search_url(query)
     return "https://tiss.tuwien.ac.at/api/search/course/v1.0/quickSearch?searchterm=" + query
   end

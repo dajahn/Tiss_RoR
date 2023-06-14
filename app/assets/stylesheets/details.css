@@ -68,3 +68,7 @@
 .area {
     height: 100px;
 }
+
+.highlight {
+    color: red;
+}
