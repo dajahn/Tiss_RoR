@@ -26,3 +26,4 @@
 | 30.04.2022 | 00:50 h    | can now add augments |
 | 11.06.2022 | 03:30 h    | added printable list for each category |
 | 12.06.2022 | 04:30 h    | refactoring of all controllers; started implementing req. 10 |
+| 12.06.2022 | 02:30 h    | implemented full person report + search functionallity |
