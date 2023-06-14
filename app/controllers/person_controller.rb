@@ -74,9 +74,10 @@ class PersonController < SearchController
 
         if !params[:search].nil? && params[:search].length > 0
             query = params[:search]
+            regex = Regexp.new(query, Regexp::IGNORECASE)
             for i in 1..@data.length-1
                 for j in 0..@data[i].length-1
-                    @data[i][j]['title'] = @data[i][j]['title'].gsub(/#{query}/, '<span class="highlight">\0</span>').html_safe
+                    @data[i][j]['title'] = @data[i][j]['title'].gsub(regex, '<span class="highlight">\0</span>').html_safe
                 end
             end
         end

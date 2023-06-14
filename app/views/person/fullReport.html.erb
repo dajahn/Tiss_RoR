@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag "details", media: "all" %>
+<div class="report">
+  <div class="search">
+    <%= form_with url: person_full_report_path, method: :get do |form|%>
+      <%= form.label :search %>
+      <%= form.text_field :search%>
+      <%= hidden_field_tag :query, params[:query] %>
+      <%= hidden_field_tag :id, params[:id] %>
+      <%= form.submit "Search"%>
+    <%end %>
+  </div>
+  <div class="details">
+    <div class="details-image-container">
+      <% if @data[0]["picture_uri"].present? %>
+        <img src="https://tiss.tuwien.ac.at<%= @data[0]["picture_uri"] %>" class="details-img">
+      <% else %>
+        <h4 class="no-image-text">No image available</h4>
+      <% end %>
+    </div>
+    <div class="details-body">
+      <h1 class="details-title"><%= @data[0]["first_name"] %> <%= @data[0]["last_name"] %></h1>
+      <p class="details-text">
+        Email: <%= @data[0]["main_email"] %> <br>
+        Phone Number:  <%= @data[0]["main_phone_number"] %> <br>
+        Preceeding Titles: <%= @data[0]["preceding_titles"] %> <br>
+        Postpositioned Titles: <%= @data[0]["postpositioned_titles"] %></p>
+    </div>
+  </div>
+  <div class="details">
+    <h2>Courses</h2>
+    <% if @data[1].length > 0%>
+      <% @data[1].each do |course| %>
+        <div>
+          <h3 class="details-title"><%= course["title"] %> </h3>
+        </div>
+      <% end %>
+    <% else%>
+      <h3>There are no Courses associated with this lecturer.</h3>
+    <%end%>
+  </div>
+  <div class="details">
+    <% if @data[2].length > 0%>
+      <h2>Projects</h2>
+      <% @data[2].each do |project| %>
+        <div>
+          <h3 class="details-title"><%= project["title"] %> </h3>
+        </div>
+      <% end %>
+    <% else%>
+      <h3>There are no Projects associated with this lecturer.</h3>
+    <%end%>
+  </div>
+  <div class="details">
+    <h2>Thesis</h2>
+    <% if @data[3].length > 0%>
+      <% @data[3].each do |thesis| %>
+        <div>
+          <h3 class="details-title"><%= thesis["title"] %> </h3>
+        </div>
+      <% end %>
+    <% else%>
+      <h3>There are no Theses associated with this lecturer.</h3>
+    <%end%>
+  </div>
+</div>
