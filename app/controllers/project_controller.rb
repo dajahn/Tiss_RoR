@@ -53,7 +53,10 @@ class ProjectController < SearchController
   end
 
   def isFav
-      super()
+    @isFav = super()
+
+    logger.info "-----"
+    logger.info @isFav
   end
 
   def report
@@ -66,6 +69,10 @@ class ProjectController < SearchController
         @elements.push(e)
     end
   end
+
+  def update
+    super()
+  end
   
   private
 
@@ -73,8 +80,6 @@ class ProjectController < SearchController
     params.require(:query)
   end
 
-  def update
-    super()
-  end
+
 
 end

@@ -64,7 +64,7 @@ class CourseController < SearchController
   end
 
   def isFav
-      super()
+    @isFav = super()
   end
 
   def report
@@ -78,6 +78,11 @@ class CourseController < SearchController
         @elements.push(e)
     end
   end
+
+  def update
+    super()
+  end
+
 
   private
 
@@ -95,8 +100,5 @@ class CourseController < SearchController
     params.require(:query)
   end
 
-  def update
-    super()
-  end
 
 end

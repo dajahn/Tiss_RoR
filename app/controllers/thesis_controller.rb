@@ -50,7 +50,7 @@ class ThesisController < SearchController
     end
 
     def isFav
-        super()
+        @isFav = super()
     end
 
     def report
@@ -64,14 +64,16 @@ class ThesisController < SearchController
         end
     end
 
+    def update
+        super()
+    end
+
     private
 
     def query_param
         params.require(:query)
     end
 
-    def update
-        super()
-    end
+
 
 end

@@ -63,13 +63,15 @@ class SearchController < ApplicationController
         @favorites = Favorite.where(entryType: listname, user_id: Current.user)
     end
 
+    def update
+        super()
+    end
+
     private
     def setId
         @id = params[:id]
     end
 
-    def update
-        super()
-    end
+
 
 end
