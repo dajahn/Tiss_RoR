@@ -22,8 +22,8 @@ class ThesisController < SearchController
     end
 
     def details
-        thesis_id = params.require(:id)
-        call_api(thesis_id)
+        @id = params.require(:id)
+        call_api(@id)
         extract_data()
     end
 

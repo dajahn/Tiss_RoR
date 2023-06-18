@@ -25,8 +25,8 @@ class ProjectController < SearchController
   end
 
   def details
-    project_id = params.require(:id)
-    call_api(project_id)
+    @id = params.require(:id)
+    call_api(@id)
     extract_data()
   end
 
