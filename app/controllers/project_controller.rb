@@ -40,7 +40,8 @@ class ProjectController < SearchController
       "subtitle" => "#{@doc.at_xpath("//title/de").content}",
       "subsubtitle" => "Projektform: #{@doc.at_xpath("//projectForm").content}, Projekttyp: #{@doc.at_xpath("//projectType").content}",
       "text" => @doc.at_xpath("//abstract/de") ? @doc.at_xpath("//abstract/de").content : nil,
-      "text_2" => "Projektbeginn: #{@doc.at_xpath("//projectBegin").content}, Projektende: #{@doc.at_xpath("//projectEnd").content}"
+      "text_2" => "Projektbeginn: #{@doc.at_xpath("//projectBegin").content}, Projektende: #{@doc.at_xpath("//projectEnd").content}",
+      "isFav" => isFav()
     }
   end
 
@@ -54,9 +55,6 @@ class ProjectController < SearchController
 
   def isFav
     @isFav = super()
-
-    logger.info "-----"
-    logger.info @isFav
   end
 
   def report
