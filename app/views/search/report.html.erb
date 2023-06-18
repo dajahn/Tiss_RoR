@@ -6,7 +6,7 @@
       <%= f.check_box :showNotes, { checked: @parameters["showNotes"].to_i == 1 } %>
       <%= f.label :showNotes, "Show personal annotations" %>
       <%= f.submit "Generate", class: "button-secondary load-button"%>
-      <p>You can directly print from this page. All unnecessary text will be removed in the print view.</p>
+      <p class="prompt">You can directly print from this page. All unnecessary text will be removed in the print view.</p>
     <% end %>
   </div>
   <div class="list-container">

@@ -30,7 +30,7 @@
           </div>
         </div>
         <%= hidden_field_tag :id, @id%>
-        <% hidden_field_tag :title, @result["title"] %>
+        <%= hidden_field_tag :title, @result["title"] %>
         <%= form.submit "Add to favorites" , class: "btn-to details-link link-primary details-button" %>
       <%end %>
     <% else %>
