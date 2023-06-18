@@ -66,4 +66,13 @@ class ApplicationController < ActionController::Base
         matches = name.match /(\d*[W|S])/
         matches[1]
     end
+
+    def update
+        id = params.require(:id)
+        notes = params.require(:notes)
+        keywords = params.require(:keywords)
+        element = Favorite.find_by(objectId: id, entryType: Current.search_page_name, user_id: Current.user.id)
+        element.update(notes: notes, keywords: keywords)
+        element.save
+    end
 end

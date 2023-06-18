@@ -83,6 +83,10 @@ class PersonController < SearchController
         end
     end
 
+    def update
+        super()
+    end
+
     private
 
     def query_param

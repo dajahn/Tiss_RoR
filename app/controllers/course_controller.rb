@@ -34,9 +34,9 @@ class CourseController < SearchController
   end
 
   def details
-    course_id = params.require(:id)
-    course_semester = params.require(:semester)
-    call_api(course_id, course_semester)
+    @id = params.require(:id)
+    @semester = params.require(:semester)
+    call_api(@id, @semester)
     extract_data()
   end
 
@@ -94,4 +94,9 @@ class CourseController < SearchController
   def query_param
     params.require(:query)
   end
+
+  def update
+    super()
+  end
+
 end

@@ -68,5 +68,10 @@ class ThesisController < SearchController
 
     def query_param
         params.require(:query)
-    end 
+    end
+
+    def update
+        super()
+    end
+
 end

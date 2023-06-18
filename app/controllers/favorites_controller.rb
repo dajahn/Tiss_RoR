@@ -32,4 +32,9 @@ class FavoritesController < ApplicationController
   def get_semester_from_course_name(name)
     super(name)
   end
+
+  def update
+    super()
+  end
+
 end
