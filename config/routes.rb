@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "course_details", to:"course#details"
   post "course_favorite", to:"course#addFavorite"
   delete "course_favorite", to:"course#removeFavorite"
+  put "course_favorite", to: "course#update"
   get "course_report", to: "course#report"
 
   get "project_search", to: "project#index"
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get "project_details", to:"project#details"
   post "project_favorite", to:"project#addFavorite"
   delete "project_favorite", to:"project#removeFavorite"
+  put "project_favorite", to: "project#update"
   get "project_report", to: "project#report"
 
   get "thesis_search", to: "thesis#index"
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   get "thesis_details", to:"thesis#details"
   post "thesis_favorite", to:"thesis#addFavorite"
   delete "thesis_favorite", to:"thesis#removeFavorite"
+  put "thesis_favorite", to: "thesis#update"
   get "thesis_report", to: "thesis#report"
 
   get "favorites", to: "favorites#list"

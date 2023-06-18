@@ -22,8 +22,8 @@ class ThesisController < SearchController
     end
 
     def details
-        thesis_id = params.require(:id)
-        call_api(thesis_id)
+        @id = params.require(:id)
+        call_api(@id)
         extract_data()
     end
 
@@ -50,7 +50,7 @@ class ThesisController < SearchController
     end
 
     def isFav
-        super()
+        @isFav = super()
     end
 
     def report
@@ -64,14 +64,16 @@ class ThesisController < SearchController
         end
     end
 
+    def update
+        super()
+    end
+
     private
 
     def query_param
         params.require(:query)
     end
 
-    def update
-        super()
-    end
+
 
 end

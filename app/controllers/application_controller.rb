@@ -58,7 +58,6 @@ class ApplicationController < ActionController::Base
 
     def isFav
         objectId = params[:id]
-
         !Favorite.find_by(objectId: objectId, entryType: Current.search_page_name, user_id: Current.user.id).nil?
     end
 
