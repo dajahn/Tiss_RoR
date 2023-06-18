@@ -17,7 +17,7 @@
   </div>
   <div class="details-controls">
     <div class="flex">
-      <%= link_to  "Courses", course_results_path(query: @links_query),  class: "details-link link-primary" %>
+      <%= link_to "Courses", course_results_path(query: @links_query), class: "details-link link-primary" %>
       <%= link_to "Projects", project_results_path(query: @links_query), class: "details-link link-primary" %>
       <%= link_to "Theses", thesis_results_path(query: @links_query), class: "details-link link-primary" %>
       <%= link_to "Full Report", person_full_report_path(query: @links_query, id: @id), class: "details-link link-primary" %>
@@ -25,23 +25,38 @@
   </div>
   <div class="augments">
     <% if !@isFav %>
-      <%= form_with url: person_favorite_path, method: :post do |form|%>
+      <%= form_with url: person_favorite_path, method: :post do |form| %>
         <div class="augments">
           <div class="augment-row">
             <label for="keywords">Keywords:</label>
-            <input class="inputs" id="keywords" name="keywords" type="text" placeholder="Some Keywords...">
+            <%= form.text_field :keywords, class: "inputs", placeholder: "Some keywords..." %>
           </div>
           <div class="augment-row">
             <label for="notes">Personal Notes:</label>
-            <textarea class="area inputs" id="notes" name="notes" type="text" placeholder="Some personal notes..."></textarea>
+            <%= form.text_area :notes, class: "area inputs", placeholder: "Some personal notes..." %>
           </div>
         </div>
-        <%= hidden_field_tag :id, @person["tiss_id"]%>
-        <%= hidden_field_tag :title, @person["first_name"] +" " + @person["last_name"] %>
-        <%= form.submit "Add to favorites" , class: "btn-to details-link link-primary details-button" %>
-      <%end %>
+        <%= hidden_field_tag :id, @person["tiss_id"] %>
+        <%= hidden_field_tag :title, @person["first_name"] + " " + @person["last_name"] %>
+        <%= form.submit "Add to favorites", class: "btn-to details-link link-primary details-button" %>
+      <% end %>
     <% else %>
-      <%= button_to "Remove from favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @person["tiss_id"] }  %>
-    <%end%>
+      <%= form_with url: person_favorite_path, method: :post do |form| %>
+        <div class="augments">
+          <div class="augment-row">
+            <label for="keywords">Keywords:</label>
+            <%= form.text_field :keywords, class: "inputs", placeholder: "Some keywords..." %>
+          </div>
+          <div class="augment-row">
+            <label for="notes">Personal Notes:</label>
+            <%= form.text_area :notes, class: "area inputs", placeholder: "Some personal notes..." %>
+          </div>
+        </div>
+        <%= hidden_field_tag :id, @person["tiss_id"] %>
+        <%= hidden_field_tag :title, @person["first_name"] + " " + @person["last_name"] %>
+        <%= button_to "Update personal notes", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :put %>
+        <%= button_to "Remove from favorites", person_favorite_path, class: "btn-to details-link link-primary details-button", method: :delete, params: { id: @person["tiss_id"] } %>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "person_details", to:"person#details"
   post "person_favorite", to:"person#addFavorite"
   delete "person_favorite", to:"person#removeFavorite"
+  put "person_favorite", to: "person#update"
   get "person_report", to: "person#report"
   get "person_full_report", to: "person#fullReport"
 

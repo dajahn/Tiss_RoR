@@ -67,4 +67,9 @@ class SearchController < ApplicationController
     def setId
         @id = params[:id]
     end
+
+    def update
+        super()
+    end
+
 end

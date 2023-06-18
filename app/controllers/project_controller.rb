@@ -72,4 +72,9 @@ class ProjectController < SearchController
   def query_param
     params.require(:query)
   end
+
+  def update
+    super()
+  end
+
 end
