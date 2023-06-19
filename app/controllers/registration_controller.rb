@@ -4,7 +4,7 @@ class RegistrationController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params) 
     validate_password()
    
     if @user.errors.empty? && @user.save

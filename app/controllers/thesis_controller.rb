@@ -8,7 +8,12 @@ class ThesisController < SearchController
     end
 
     def search
-        query = query_param
+        if !validate_query
+            index
+            render :index
+            return
+        end
+        query = query_param[:query]
         url = get_search_url(query)
         super(url)
     end
@@ -68,12 +73,13 @@ class ThesisController < SearchController
         super()
     end
 
+    def validate_query
+        super(query_param)
+    end
+
     private
 
     def query_param
-        params.require(:query)
+        params[:query]
     end
-
-
-
 end

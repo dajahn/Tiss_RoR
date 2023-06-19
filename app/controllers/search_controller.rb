@@ -5,6 +5,7 @@ require 'open-uri'
 class SearchController < ApplicationController
     def index(search_type)
         @search_type = search_type
+        @search_query = Query.new
     end
 
     def search (url)
@@ -67,11 +68,20 @@ class SearchController < ApplicationController
         super()
     end
 
+    def validate_query(query)
+        @query_string = Query.new
+        @query_string.attributes = { query: query[:query]}
+        
+        if !@query_string.valid?
+            flash[:alert]= "Search query cannot be blank"
+            return false
+        end
+
+        return true
+    end
+
     private
     def setId
         @id = params[:id]
     end
-
-
-
 end

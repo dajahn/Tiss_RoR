@@ -8,7 +8,13 @@ class CourseController < SearchController
   end
 
   def search
-    query = query_param
+    if !validate_query
+      index
+      render :index
+      return
+    end
+
+    query = query_param[:query]
     url = get_search_url(query)
     super(url)
     set_course_props()
@@ -83,6 +89,9 @@ class CourseController < SearchController
     super()
   end
 
+  def validate_query
+    super(query_param)
+  end
 
   private
 
@@ -97,7 +106,7 @@ class CourseController < SearchController
   end
 
   def query_param
-    params.require(:query)
+    params[:query]
   end
 
 

@@ -11,7 +11,12 @@ class ProjectController < SearchController
   end
 
   def search
-    query = query_param
+    if !validate_query
+      index
+      render :index
+      return
+    end
+    query = query_param[:query]
     url = get_search_url(query)
     super(url)
   end
@@ -73,12 +78,16 @@ class ProjectController < SearchController
   def update
     super()
   end
+
+  def validate_query
+    super(query_param)
+  end
   
   private
 
   def query_param
-    params.require(:query)
-  end
+    params[:query]
+end
 
 
 

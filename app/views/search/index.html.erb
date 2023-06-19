@@ -3,7 +3,7 @@
   <div class="main-container">
     <div class="form">
       <h1><%= @search_type["model"]%> Search</h1>
-      <%= form_with url: { action: :search }, :method=>"get",  data: {turbo:false} do |form|%>
+      <%= form_with model: @search_query, url: { action: :search }, :method=>"get",  data: {turbo:false} do |form|%>
         <div class="form-group">
           <%= form.label "Enter #{@search_type["search_term"]}:" %>
           <%= form.text_field :query, class: "input-field"%>
