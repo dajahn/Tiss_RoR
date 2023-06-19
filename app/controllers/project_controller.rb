@@ -33,6 +33,11 @@ class ProjectController < SearchController
     @id = params.require(:id)
     call_api(@id)
     extract_data()
+    if(@isFav)
+      element = Favorite.find_by(objectId: @id, entryType: Current.search_page_name, user_id: Current.user.id)
+      @notes = element["notes"]
+      @keywords = element["keywords"]
+    end
   end
 
   def call_api(project_id)

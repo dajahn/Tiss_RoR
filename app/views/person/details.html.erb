@@ -45,11 +45,11 @@
         <div class="augments">
           <div class="augment-row">
             <label class="aug-label" for="keywords">Keywords:</label>
-            <%= form.text_field :keywords, class: "inputs", placeholder: "Some keywords..." %>
+            <%= form.text_field :keywords, class: "inputs", value: @keywords, placeholder: "Some keywords..." %>
           </div>
           <div class="augment-row">
             <label class="aug-label" for="notes">Personal Notes:</label>
-            <%= form.text_area :notes, class: "area inputs", placeholder: "Some personal notes..." %>
+            <%= form.text_area :notes, class: "area inputs",  value: @notes, placeholder: "Some personal notes..." %>
           </div>
         </div>
         <%= hidden_field_tag :id, @person["tiss_id"] %>

@@ -32,6 +32,11 @@ class PersonController < SearchController
         call_api(@id)
         @links_query = "#{@person["first_name"]}+#{@person["last_name"]}"
         @isFav = isFav()
+        if(@isFav)
+            element = Favorite.find_by(objectId: @id, entryType: Current.search_page_name, user_id: Current.user.id)
+            @notes = element["notes"]
+            @keywords = element["keywords"]
+        end
         return @person
     end
 

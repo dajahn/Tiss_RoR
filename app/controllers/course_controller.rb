@@ -44,6 +44,11 @@ class CourseController < SearchController
     @semester = params.require(:semester)
     call_api(@id, @semester)
     extract_data()
+    if(@isFav)
+      element = Favorite.find_by(objectId: @id, entryType: Current.search_page_name, user_id: Current.user.id)
+      @notes = element["notes"]
+      @keywords = element["keywords"]
+    end
   end
 
   def call_api(course_id, course_semester)
