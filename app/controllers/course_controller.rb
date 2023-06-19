@@ -52,7 +52,7 @@ class CourseController < SearchController
 
   def extract_data
     @result = {
-      "title" => @doc.at_xpath("//title/de").content,
+      "title" => @doc.at_xpath("//title/de").content+" "+ @doc.at_xpath("//course/semesterCode").content,
       "subtitle" => "Course: " +@doc.at_xpath("//course/courseNumber").content + ", in #{@doc.at_xpath("//course/semesterCode").content}, as #{@doc.at_xpath("//course/courseType").content}",
       "subsubtitle" => @doc.at_xpath("//objective/de").content,
       "text" => "#{@doc.at_xpath("//teachingContent/de").content}",
