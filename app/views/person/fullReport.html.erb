@@ -1,11 +1,12 @@
 <%= stylesheet_link_tag "details", media: "all" %>
 <div class="report">
-  <div class="list-item">
+  <div class="search-field">
     <%= form_with url: person_full_report_path, method: :get do |form|%>
-      <%= form.text_field :search %>
+      <%= form.label :search%>
+      <%= form.text_field :search, class: "full-size" %>
       <%= hidden_field_tag :query, params[:query] %>
       <%= hidden_field_tag :id, params[:id] %>
-      <%= form.submit "Search" %>
+      <%= form.submit "Highlight" %>
     <%end %>
   </div>
   <div class="details">

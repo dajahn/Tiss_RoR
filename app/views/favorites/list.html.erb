@@ -5,21 +5,19 @@
     <%= form_with url: "favorites", method: :get do |f| %>
       <%= f.label :listName, "List Name" %>
       <div class="select">
-      <%= f.select :listName, [['Persons', 'person'], ['Courses', 'course'], ['Thesis', 'thesis'], ['Projects', 'project']], selected: @parameters["listName"] %>
+        <%= f.select :listName, [['Persons', 'person'], ['Courses', 'course'], ['Thesis', 'thesis'], ['Projects', 'project']], selected: @parameters["listName"] %>
       </div>
       <%= f.label :paramName, "Parameter to sort after" %>
       <div class="select">
-      <%= f.select :paramName, [['Name', 'title'], ['Creation Date', 'created_at']], selected: @parameters["paramName"]  %>
+        <%= f.select :paramName, [['Name', 'title'], ['Creation Date', 'created_at']], selected: @parameters["paramName"]  %>
       </div>
       <%= f.label :order, "Sorting order" %>
       <div class="select">
-      <%= f.select :order, [['Descending', 'desc'], ['Ascending', 'asc']], selected: @parameters["order"]  %>
+        <%= f.select :order, [['Descending', 'desc'], ['Ascending', 'asc']], selected: @parameters["order"]  %>
       </div>
-        <%= f.submit "Load", class: "button-secondary load-button"%>
+      <%= f.submit "Load", class: "button-secondary load-button"%>
     <% end %>
   </div>
-
-
   <div class="list-container">
     <% if @result.present? %>
       <% @result.each_with_index do |element, index| %>
@@ -32,7 +30,7 @@
               <% elsif element["entryType"] == "thesis" %>
                 <%= link_to "Thesis Details", thesis_details_path(id: element["objectId"]), class: "button-secondary" %>
               <% elsif element["entryType"] == "course" %>
-                <%= link_to "Course Details", course_details_path(id: element["objectId"], semester:  element["title"].match(/(\d*[W|S])/)[1]), class: "button-secondary" %>
+                <%= link_to "Course Details", course_details_path(id: element["objectId"], semester:  element["title"].match(/\d{4}[WS]/)[0]), class: "button-secondary" %>
               <% elsif element["entryType"] == "person" %>
                 <%= link_to "Person Details", person_details_path(id: element["objectId"]), class: "button-secondary" %>
               <% end %>

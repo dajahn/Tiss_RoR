@@ -28,11 +28,11 @@
       <%= form_with url: person_favorite_path, method: :post do |form| %>
         <div class="augments">
           <div class="augment-row">
-            <label for="keywords">Keywords:</label>
+            <label class="aug-label" for="keywords">Keywords:</label>
             <%= form.text_field :keywords, class: "inputs", placeholder: "Some keywords..." %>
           </div>
           <div class="augment-row">
-            <label for="notes">Personal Notes:</label>
+            <label class="aug-label" for="notes">Personal Notes:</label>
             <%= form.text_area :notes, class: "area inputs", placeholder: "Some personal notes..." %>
           </div>
         </div>
@@ -44,11 +44,11 @@
       <%= form_with url: person_favorite_path, method: :post do |form| %>
         <div class="augments">
           <div class="augment-row">
-            <label for="keywords">Keywords:</label>
+            <label class="aug-label" for="keywords">Keywords:</label>
             <%= form.text_field :keywords, class: "inputs", placeholder: "Some keywords..." %>
           </div>
           <div class="augment-row">
-            <label for="notes">Personal Notes:</label>
+            <label class="aug-label" for="notes">Personal Notes:</label>
             <%= form.text_area :notes, class: "area inputs", placeholder: "Some personal notes..." %>
           </div>
         </div>

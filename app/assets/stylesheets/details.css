@@ -72,3 +72,28 @@
 .highlight {
     color: red;
 }
+
+.aug-label {
+    color: black
+}
+
+.full-size {
+    width: 100%;
+}
+
+.search-btn {
+    margin-left: auto;
+}
+
+.search-field{
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+    background-color: #12192c;
+    color: white;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 32px 16px 32px 16px;
+    height: fit-content;
+}
